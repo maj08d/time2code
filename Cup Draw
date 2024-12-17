@@ -1,0 +1,25 @@
+import random
+
+teams=[]
+def input_teams(teams):
+    cont=True
+    while cont==True:
+        team1=input("Enter a team: ")
+        teams.append(team1)
+        team2=input("Enter another team: ")
+        teams.append(team2)
+        carryon=input("Enter 2 more teams? (Y/N): ")
+        if carryon.casefold() == "y":
+            cont=True
+        elif carryon.casefold() == "n":
+            cont=False
+
+def draw_teams():
+    random.shuffle(teams)
+    numofteams=len(teams)-1
+    print("The draw is: ")
+    for i in range(0, numofteams, 2):
+        print(f"\n{teams[i]} vs {teams[i+1]}")
+
+input_teams(teams)
+draw_teams()
