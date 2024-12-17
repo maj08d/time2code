@@ -1,0 +1,12 @@
+ballpitradius= float(input("Enter the ball pit radius "))
+ballradius = float(input("Enter the ball radius "))
+pi=3.14
+packingdensity=float(input("What % of the pit should be full "))/100
+
+def ballpitarea():
+    return(ballpitradius * ballpitradius * pi)
+    
+def ballarea():
+    return(ballradius * ballradius * ballradius * pi * 4/3)
+
+print(f"The number of balls is " + ((ballpitarea()/ballarea()) * packingdensity))
