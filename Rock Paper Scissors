@@ -1,0 +1,70 @@
+import random
+
+def choose():
+    choice=input("\nEnter r, p, s: ")
+    if choice !=  "r" and choice != "p" and choice != "s":
+        print("Invalid input, try again")
+        return choose()
+    else:
+        return choice
+        
+def cpu_choice():
+    randchoice=random.randint(1,3)
+    if randchoice == 1:
+        return "r"
+    elif randchoice == 2:
+        return "p"
+    else:
+        return "s"
+    
+def playgame():
+    playercount=0
+    cpucount=0
+    roundcount=0
+    while (playercount<5 and cpucount<5):
+        print(f"\n***** Round {roundcount+1} ***** ")
+        print("Player score: " + str(playercount))
+        print("CPU score: " + str(cpucount))
+        player=choose()
+        cpu=cpu_choice()
+        roundcount+=1
+        if player==cpu:
+            if player=="r":
+                print("rock-rock, it's a draw")
+            elif player=="p":
+                print("paper-paper, it's a draw")
+            else:
+                print("scissors-scissors, it's a draw")
+        elif player == "r" and cpu == "p":
+            print("Your rock lost to CPU's paper")
+            cpucount+=1
+        elif player == "r" and cpu == "s":
+            print("Your rock beat CPU's scissors")
+            playercount+=1
+           
+        elif player == "p" and cpu == "r":
+            print("Your paper beats CPU's rock")
+            playercount+=1
+            
+        elif player == "p" and cpu == "s":
+            print("Your paper lost to CPU's scissors")
+            cpucount+=1
+            
+        elif player == "s" and cpu == "p":
+            print("Your scissors beat CPU's paper")
+            playercount+=1
+           
+        elif player == "s" and cpu == "r":
+            cpucount+=1
+           
+
+    if cpucount>playercount:
+        print(f"CPU WINS with a score of {cpucount}")
+        print(f"Your score: {playercount}")
+    elif playercount>cpucount:
+        print(f"YOU WIN with a score of {playercount}")
+        print(f"CPU score: {cpucount}")
+    else:
+        print(f"Draw, both scored {playercount}")
+        
+playgame()
