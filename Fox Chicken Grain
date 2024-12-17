@@ -1,0 +1,77 @@
+print("A fox, chicken and a bag of grain wait by the side of a river.")
+fox=0
+chicken=0
+grain=0
+farmer=0
+
+def output():
+    print("\nThis side of the river: ")
+    if fox==0:
+        print("fox")
+    if chicken==0:
+        print("chicken")
+    if grain==0:
+        print("grain")
+    if farmer ==0:
+        print("farmer")
+    print("\nOther side of the river:")
+    if fox==1:
+        print("fox")
+    if chicken==1:
+        print("chicken")
+    if grain==1:
+        print("grain")
+    if farmer ==1:
+        print("farmer")
+        
+def wrongmove():
+    if farmer ==1 and fox==0 and chicken==0:
+        print("\nThe fox ate the chicken")
+        exit()
+    if farmer ==0 and fox==1 and chicken==1:
+        print("\nThe fox ate the chicken")
+        exit()
+    if farmer ==1 and grain==0 and chicken==0:
+        print("\nThe chicken ate the grain")
+        exit()
+    if farmer ==0 and grain==1 and chicken==1:
+        print("\nThe chicken ate the grain")
+        exit()
+
+ 
+win=False
+while win == False:
+    choice=input("\nWhich item would you like to take to the other side ")
+    if choice == "fox" and fox ==0 and farmer ==0:
+        fox=1
+        farmer=1
+    elif choice == "chicken" and chicken==0 and farmer ==0:
+        chicken=1
+        farmer=1
+    elif choice == "grain" and grain ==0 and farmer==0:
+        grain=1
+        farmer=1
+    elif choice =="farmer" and farmer ==0:
+        farmer=1
+    elif choice == "fox" and fox==1 and farmer==1:
+        fox=0
+        farmer=0
+    elif choice == "chicken" and chicken==1 and farmer ==1:
+        chicken=0
+        farmer=0
+    elif choice == "grain" and grain ==1 and farmer==1:
+        grain=0
+        farmer=0
+    elif choice=="farmer" and farmer==1:
+        farmer=0
+    else:
+        print("Invalid input")
+    output()
+    wrongmove()
+    if farmer==1 and grain==1 and chicken==1 and fox==1:
+        win=True
+    else:
+        win=False
+    
+if win==True:
+    print("You solved the puzzle")
