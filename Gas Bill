@@ -1,0 +1,10 @@
+def energycost():
+    prev_reading=int(input("Enter the previous reading "))
+    cur_reading=int(input("Enter the current reading "))
+    calorific_value=39.3
+    killowat_hours= (prev_reading - cur_reading) *1.022*(calorific_value/3.6)
+    cost = killowat_hours*0.0284
+    return int(cost)
+
+print(energycost())
+print("Test")
