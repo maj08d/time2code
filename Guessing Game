@@ -1,0 +1,15 @@
+import random
+
+low=int(input("What is the lowest possible value? "))
+high=int(input("What is the highest possible value?" ))
+number=random.randint(low, high)
+correct=False
+
+        
+while correct==False:
+    guess=int(input("Guess a number "))
+    if guess ==number:
+        correct=True
+        print("Correct")
+    else:
+        print("incorrect, guess again")
