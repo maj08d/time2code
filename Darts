@@ -1,0 +1,71 @@
+players=[]
+score=[101, 101]
+finished=False
+player1=input("Player 1, enter name: ")
+players.append(player1)
+player2=input("Player 2, enter name: ")
+players.append(player2)
+
+def dart_valid(dart):
+    if dart > 0 and dart < 20:
+        return True
+    elif dart > 25 and dart < 50:
+        return True
+    elif dart == 40 or (dart%2==0 and dart<40):
+        return True
+    elif dart<=60 and dart%3==0:
+        return True
+    else:
+        return False
+
+def playgame(players, score, finished):
+    while not finished:
+        for x in range(2):
+            print(f"\nIt is {players[x]}'s turn, score: {score[x]}")
+            total=0 #total for each round, needs to be outside loop so it can stack within the following loop
+            possible_win=False
+            for y in range(3):
+
+                print(f"\nDart {y+1}")
+                dart=int(input("\nEnter dart score: "))
+
+                dart_valid(dart)
+
+                while not dart_valid(dart):
+                    dart=int(input("\nInvalid input, enter dart again: "))
+
+                if dart<=60 and dart%3==0 and dart!=0:
+                    print(f"Treble {int(dart/3)}")
+
+                if dart==40:
+                    print("Double 20")
+
+                total+=dart #adding dart to total
+                newscore=score[x]-total #subtracts total from orig score to get the latest score
+                if newscore==0: #if latest score=0, the player may be able to win
+                    possible_win=True
+
+                if newscore==1 or newscore<0:
+                    print("Bust!")
+                    total=0
+                    newscore=score[x]-total
+                    print(f"{total} scored")
+                    break
+                    
+
+             
+                if possible_win and (dart==40 or (dart<=40 and dart%2==0) or dart==50):
+                        print("Shot!")
+                        print(f"{total} scored")
+                        print(f"\n{players[x]} wins the leg")
+                        finished=True
+                        break
+                elif y==2:
+                        print(f"{total} scored")
+
+                
+            score[x] -= total
+            if finished==True:
+                break
+
+playgame(players, score, finished)
